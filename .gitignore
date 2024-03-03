@@ -1,0 +1,8 @@
+task/.env
+__pycache__/
+*.bak
+*.dist
+*.idea
+.venv
+db.sqlite3
+static

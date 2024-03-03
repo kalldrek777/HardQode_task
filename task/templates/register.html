@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}{% endblock %}
+
+{% load i18n %}
+
+{% block content %}
+<br><br>
+<div class="container wrapper flex-grow-1">
+
+<form method="post">
+    {% csrf_token %}
+    {% for f in form %}
+    <p><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}</p>
+    <div class="form-error">{{ f.errors }}</div>
+    {% endfor %}
+    <input class="btn btn-outline-warning me-2" type="submit" value="{% translate 'Зарегистрироваться' %}">
+
+</form>
+
+</div>
+{% endblock %}

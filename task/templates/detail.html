@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% endblock %}
+
+{% load i18n %}
+
+{% block content %}
+
+{% if messages %}
+    {% for message in messages %}
+    <div class="text-center alert alert-{{ message.tags }}">
+             {{ message }}
+    </div>
+    {% endfor %}
+{% endif %}
+<br><br>
+
+
+<div class="container wrapper flex-grow-1">
+
+<div class="card">
+  <h5 class="card-header">{{ product.name }}</h5>
+  <div class="card-body">
+    <h5 class="card-title">{{ product.author }}</h5>
+    <p class="card-text">{{ product.start_date }}</p>
+
+      {% for lesson in lessons_of_product %}
+    <div class="card w-75">
+      <div class="card-body">
+        <h5 class="card-title">{{ lesson.name }}</h5>
+        <a href="{{ lesson.video }}" class="btn btn-primary">Перейти к уроку</a>
+      </div>
+    </div><br>
+        {% endfor %}
+      {% if time_perm %}
+          {% if permission %}
+          <a href="{% url 'products:buy_page' pk=product.id %}" class="btn btn-primary">Приобрести курс</a>
+          {% else %}
+          <p class="card-title">Группы переполнены</p>
+          {% endif %}
+      {% else %}
+            <p class="card-title">Продукт начался</p>
+      {% endif %}
+
+  </div>
+</div>
+
+
+</div>
+
+{% endblock %}
